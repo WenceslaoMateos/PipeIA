@@ -28,3 +28,9 @@ nbproject
 build.xml
 manifest.manifest
 test
+**/nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
