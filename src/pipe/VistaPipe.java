@@ -40,8 +40,8 @@ public class VistaPipe extends JPanel {
         }
     }
 
-    public void agregaPipe() {
-        pipes.add(new Pipe(0, 0));
+    public void agregaPipe(int x, int y, int op) {
+        pipes.add(new Pipe(x, y, op));
         this.repaint();
     }
 

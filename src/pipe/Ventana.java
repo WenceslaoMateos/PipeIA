@@ -8,8 +8,9 @@ package pipe;
 import javax.swing.JFrame;
 
 /**
- * La ventana solamente se encarga de la parte visual de comienzo del juego y 
+ * La ventana solamente se encarga de la parte visual de comienzo del juego y
  * quizas en un futuro de funciones mas avanzadas.
+ *
  * @author wenceslao
  */
 public class Ventana extends JFrame {
@@ -99,9 +100,7 @@ public class Ventana extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNewPipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPipeActionPerformed
-
-        juego.agregaPipe();
-
+        juego.agregaPipe(0, 0, 2);
     }//GEN-LAST:event_jButtonNewPipeActionPerformed
 
     /**
