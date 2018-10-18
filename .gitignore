@@ -24,7 +24,7 @@ hs_err_pid*
 /build/
 
 #para no pushear archivos del proyecto
-nbproject
+nbproject/
 build.xml
 manifest.manifest
 test
