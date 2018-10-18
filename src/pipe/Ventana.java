@@ -5,17 +5,23 @@
  */
 package pipe;
 
+import javax.swing.JFrame;
+
 /**
- *
+ * La ventana solamente se encarga de la parte visual de comienzo del juego y 
+ * quizas en un futuro de funciones mas avanzadas.
  * @author wenceslao
  */
-public class Ventana extends javax.swing.JFrame {
+public class Ventana extends JFrame {
+
+    private Juego juego;
 
     /**
      * Creates new form Ventana
      */
     public Ventana() {
         initComponents();
+        this.juego = Juego.getJuego((VistaPipe) this.jPanelJuego);
     }
 
     /**
@@ -27,21 +33,76 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelJuego = new VistaPipe();
+        jPanelComandos = new javax.swing.JPanel();
+        jButtonNewPipe = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanelJuegoLayout = new javax.swing.GroupLayout(jPanelJuego);
+        jPanelJuego.setLayout(jPanelJuegoLayout);
+        jPanelJuegoLayout.setHorizontalGroup(
+            jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 197, Short.MAX_VALUE)
+        );
+        jPanelJuegoLayout.setVerticalGroup(
+            jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButtonNewPipe.setText("Genera Pipe");
+        jButtonNewPipe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewPipeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelComandosLayout = new javax.swing.GroupLayout(jPanelComandos);
+        jPanelComandos.setLayout(jPanelComandosLayout);
+        jPanelComandosLayout.setHorizontalGroup(
+            jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComandosLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jButtonNewPipe)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanelComandosLayout.setVerticalGroup(
+            jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComandosLayout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jButtonNewPipe)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonNewPipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPipeActionPerformed
+
+        juego.agregaPipe();
+
+    }//GEN-LAST:event_jButtonNewPipeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +140,8 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonNewPipe;
+    private javax.swing.JPanel jPanelComandos;
+    private javax.swing.JPanel jPanelJuego;
     // End of variables declaration//GEN-END:variables
 }
