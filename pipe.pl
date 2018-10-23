@@ -1,11 +1,11 @@
 %representar las piezas como una lista de huecos
 %pieza([arriba, abajo, izquierda, derecha]).
 %se va a dar un listado de piezas (en formato lista, aserto no porque es horroroso al backtracking)
-% una vez cargado el programa y se va a resolver con eso
+%Tambien se debe dar un origen y un destino
+%una vez cargado el programa y se va a resolver con eso
 piezas_disponibles([[izq, der], [izq, der], [izq, der], [izq, der], [abajo, arriba], [abajo, arriba], [abajo, der], [izq, arriba]]).
 origen(pieza_ub(0, 4, [der])).
 destino(pieza_ub(6, 1, [izq])).
-ocupado(0, 4).
 %formato de pieza ubicada: pieza_ub(X, Y, [listado de orientaciones])
 
 %limites del tablero
@@ -15,11 +15,14 @@ ubicacion_valida(X, Y) :-
     X < 6,
     Y < 6.
 
-disponible(X, Y) :-
-    ocupado(X, Y),
+disponible(_, _, []).
+disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
+    X = XA,
+    Y = YA,
     !,
     fail.
-disponible(_, _).
+disponible(X, Y, [_ | Cola]):-
+    disponible(X, Y, Cola).
 
 compatibles(izq, der).
 compatibles(der, izq).
@@ -39,47 +42,46 @@ al_lado(X1, Y1, X2, Y2) :-
     X1 is X2 - 1,
     Y1 = Y2.
 
-resolver(pieza_ub(XO, YO, [BO]), pieza_ub(XD, YD, [BD]), _, []) :-
+resolver(Origen, Destino, Piezas, Sol) :-
+    res_aux(Origen, Destino, Piezas, [], Sol).
+
+res_aux(pieza_ub(XO, YO, [BO]), pieza_ub(XD, YD, [BD]), _, Aux, Aux) :-
     compatibles(BO, BD),
     al_lado(XO, YO, XD, YD).
-
-resolver(Origen, Destino, Piezas, [SCab | SCol]) :-
+res_aux(Origen, Destino, Piezas, Aux, Sol) :-
     select(P, Piezas, Resto),
-    SCab = pieza_ub(X, Y, P),
-    ubicar(SCab, Origen, OrigenSig),
-    miassert(ocupado(X, Y)),
-    resolver(OrigenSig, Destino, Resto, SCol).
+    PS = pieza_ub(_, _, P),
+    ubicar(PS, Origen, Aux, OrigenSig),
+    append(Aux, [PS], Aux1),
+    res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
 
-miassert(Ocupado):- assert(Ocupado).
-miassert(Ocupado):- retract(Ocupado), fail.
-
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), pieza_ub(XP, YP, LOS)) :-
+ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
     member(arriba, LP),
     member(abajo, LO),
     XP is XO,
     YP is YO + 1,
-    disponible(XP, YP),
+    disponible(XP, YP, Aux),
     select(arriba, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), pieza_ub(XP, YP, LOS)) :-
+ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
     member(izq, LP),
     member(der, LO),
     XP is XO + 1,
     YP is YO,
-    disponible(XP, YP),
+    disponible(XP, YP, Aux),
     select(izq, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), pieza_ub(XP, YP, LOS)) :-
+ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
     member(abajo, LP),
     member(arriba, LO),
     XP is XO,
     YP is YO - 1,
-    disponible(XP, YP),
+    disponible(XP, YP, Aux),
     select(abajo, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), pieza_ub(XP, YP, LOS)) :-
+ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
     member(der, LP),
     member(izq, LO),
     XP is XO - 1,
     YP is YO,
-    disponible(XP, YP),
+    disponible(XP, YP, Aux),
     select(der, LP, LOS).
 
 %al momento en que origen y destino es el mismo, quiere decir que llegaste.
