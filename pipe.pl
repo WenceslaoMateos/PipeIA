@@ -21,8 +21,28 @@ disponible(X, Y) :-
     fail.
 disponible(_, _).
 
-resolver(O, D, _, []) :-
-    ubicar(O, D, _).
+compatibles(izq, der).
+compatibles(der, izq).
+compatibles(arriba, abajo).
+compatibles(abajo, arriba).
+
+al_lado(X1, Y1, X2, Y2) :-
+    X1 = X2,
+    Y1 is Y2 + 1.
+al_lado(X1, Y1, X2, Y2) :-
+    X1 = X2,
+    Y1 is Y2 - 1.
+al_lado(X1, Y1, X2, Y2) :-
+    X1 is X2 + 1,
+    Y1 = Y2.
+al_lado(X1, Y1, X2, Y2) :-
+    X1 is X2 - 1,
+    Y1 = Y2.
+
+resolver(pieza_ub(XO, YO, [BO]), pieza_ub(XD, YD, [BD]), _, []) :-
+    compatibles(BO, BD),
+    al_lado(XO, YO, XD, YD).
+
 resolver(Origen, Destino, Piezas, [SCab | SCol]) :-
     select(P, Piezas, Resto),
     SCab = pieza_ub(X, Y, P),
