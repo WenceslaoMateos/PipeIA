@@ -5,6 +5,7 @@
  */
 package pipe;
 
+import java.util.HashMap;
 import javax.swing.JFrame;
 
 /**
@@ -16,6 +17,7 @@ import javax.swing.JFrame;
 public class Ventana extends JFrame {
 
     private Juego juego;
+    public int i = 0;
 
     /**
      * Creates new form Ventana
@@ -23,6 +25,42 @@ public class Ventana extends JFrame {
     public Ventana() {
         initComponents();
         this.juego = Juego.getJuego((VistaPipe) this.jPanelJuego);
+        this.initComand((VistaPipe) this.jPanelComandos);
+        this.setTitle("Trabajo Final IA: Pipes por Pablos y Mateos");
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.jFormattedTextFieldDestinoX.setText("6");
+        this.jFormattedTextFieldDestinoY.setText("1");
+        this.jFormattedTextFieldOrigenX.setText("0");
+        this.jFormattedTextFieldOrigenY.setText("4");
+        this.jFormattedTextFieldMatrizX.setText("6");
+        this.jFormattedTextFieldMatrizY.setText("6");
+    }
+
+    private void initComand(VistaPipe panel) {
+        panel.agregaPipe(0, 0, 1);
+        panel.agregaPipe(2, 0, 2);
+        panel.agregaPipe(4, 0, 3);
+        panel.agregaPipe(6, 0, 4);
+        panel.agregaPipe(8, 0, 5);
+        panel.agregaPipe(10, 0, 6);
+    }
+ 
+    private int cambio(String valor, char op) {
+        int aux = Integer.parseInt(valor);
+        if (aux > 0) {
+            if (op == '+') {
+                aux++;
+            } else {
+                aux--;
+            }
+        } else {
+            if (aux == 0) {
+                if (op == '+') {
+                    aux++;
+                }
+            }
+        }
+        return aux;
     }
 
     /**
@@ -35,26 +73,154 @@ public class Ventana extends JFrame {
     private void initComponents() {
 
         jPanelJuego = new VistaPipe();
-        jPanelComandos = new javax.swing.JPanel();
-        jButtonNewPipe = new javax.swing.JButton();
+        jPanelComandos = new VistaPipe();
+        jButtonMasVertical = new javax.swing.JButton();
+        jButtonMenosVertical = new javax.swing.JButton();
+        jLabelCantVertical = new javax.swing.JLabel();
+        jButtonMasHorizontal = new javax.swing.JButton();
+        jLabelCantHorizontal = new javax.swing.JLabel();
+        jButtonMenosHorizontal = new javax.swing.JButton();
+        jButtonMasAbajoDer = new javax.swing.JButton();
+        jLabelCantAbajoDer = new javax.swing.JLabel();
+        jButtonMenosAbajoDer = new javax.swing.JButton();
+        jButtonMasAbajoIzq = new javax.swing.JButton();
+        jLabelCantAbajoIzq = new javax.swing.JLabel();
+        jButtonMenosAbajoizq = new javax.swing.JButton();
+        jButtonMasArribaDer = new javax.swing.JButton();
+        jLabelCantArribaDer = new javax.swing.JLabel();
+        jButtonMenosArribaDer = new javax.swing.JButton();
+        jButtonMasArribaIzq = new javax.swing.JButton();
+        jLabelCantArribaIzq = new javax.swing.JLabel();
+        jButtonMenosArribaIzq = new javax.swing.JButton();
+        jPanelParametros = new javax.swing.JPanel();
+        jLabelTextoMatriz = new javax.swing.JLabel();
+        jLabelTextoMatrizX = new javax.swing.JLabel();
+        jLabelTextoMatrizY = new javax.swing.JLabel();
+        jLabelTextoOrigen = new javax.swing.JLabel();
+        jLabelTextoOrigenX = new javax.swing.JLabel();
+        jLabelTextoOrigenY = new javax.swing.JLabel();
+        jLabelTextoDestino = new javax.swing.JLabel();
+        jLabelTextoDestinoX = new javax.swing.JLabel();
+        jLabelTextoDestinoY = new javax.swing.JLabel();
+        jButtonResolver = new javax.swing.JButton();
+        jFormattedTextFieldMatrizX = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldMatrizY = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldOrigenX = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldOrigenY = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDestinoY = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDestinoX = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanelJuego.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelJuego.setToolTipText("");
 
         javax.swing.GroupLayout jPanelJuegoLayout = new javax.swing.GroupLayout(jPanelJuego);
         jPanelJuego.setLayout(jPanelJuegoLayout);
         jPanelJuegoLayout.setHorizontalGroup(
             jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 197, Short.MAX_VALUE)
+            .addGap(0, 1174, Short.MAX_VALUE)
         );
         jPanelJuegoLayout.setVerticalGroup(
             jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 255, Short.MAX_VALUE)
         );
 
-        jButtonNewPipe.setText("Genera Pipe");
-        jButtonNewPipe.addActionListener(new java.awt.event.ActionListener() {
+        jPanelComandos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jButtonMasVertical.setText("+");
+        jButtonMasVertical.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNewPipeActionPerformed(evt);
+                jButtonMasVerticalActionPerformed(evt);
+            }
+        });
+
+        jButtonMenosVertical.setText("-");
+        jButtonMenosVertical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosVerticalActionPerformed(evt);
+            }
+        });
+
+        jLabelCantVertical.setText("0");
+
+        jButtonMasHorizontal.setText("+");
+        jButtonMasHorizontal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMasHorizontalActionPerformed(evt);
+            }
+        });
+
+        jLabelCantHorizontal.setText("0");
+
+        jButtonMenosHorizontal.setText("-");
+        jButtonMenosHorizontal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosHorizontalActionPerformed(evt);
+            }
+        });
+
+        jButtonMasAbajoDer.setText("+");
+        jButtonMasAbajoDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMasAbajoDerActionPerformed(evt);
+            }
+        });
+
+        jLabelCantAbajoDer.setText("0");
+
+        jButtonMenosAbajoDer.setText("-");
+        jButtonMenosAbajoDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosAbajoDerActionPerformed(evt);
+            }
+        });
+
+        jButtonMasAbajoIzq.setText("+");
+        jButtonMasAbajoIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMasAbajoIzqActionPerformed(evt);
+            }
+        });
+
+        jLabelCantAbajoIzq.setText("0");
+
+        jButtonMenosAbajoizq.setText("-");
+        jButtonMenosAbajoizq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosAbajoizqActionPerformed(evt);
+            }
+        });
+
+        jButtonMasArribaDer.setText("+");
+        jButtonMasArribaDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMasArribaDerActionPerformed(evt);
+            }
+        });
+
+        jLabelCantArribaDer.setText("0");
+
+        jButtonMenosArribaDer.setText("-");
+        jButtonMenosArribaDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosArribaDerActionPerformed(evt);
+            }
+        });
+
+        jButtonMasArribaIzq.setText("+");
+        jButtonMasArribaIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMasArribaIzqActionPerformed(evt);
+            }
+        });
+
+        jLabelCantArribaIzq.setText("0");
+
+        jButtonMenosArribaIzq.setText("-");
+        jButtonMenosArribaIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenosArribaIzqActionPerformed(evt);
             }
         });
 
@@ -63,16 +229,229 @@ public class Ventana extends JFrame {
         jPanelComandosLayout.setHorizontalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jButtonNewPipe)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(128, 128, 128)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosVertical)
+                    .addComponent(jButtonMasVertical)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantVertical)))
+                .addGap(162, 162, 162)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosHorizontal)
+                    .addComponent(jButtonMasHorizontal)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantHorizontal)))
+                .addGap(171, 171, 171)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosAbajoDer)
+                    .addComponent(jButtonMasAbajoDer)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantAbajoDer)))
+                .addGap(179, 179, 179)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosAbajoizq)
+                    .addComponent(jButtonMasAbajoIzq)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantAbajoIzq)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosArribaDer)
+                    .addComponent(jButtonMasArribaDer)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantArribaDer)))
+                .addGap(165, 165, 165)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMenosArribaIzq)
+                    .addComponent(jButtonMasArribaIzq)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelCantArribaIzq)))
+                .addGap(105, 105, 105))
         );
         jPanelComandosLayout.setVerticalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jButtonNewPipe)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasHorizontal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantHorizontal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosHorizontal))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasVertical)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantVertical)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosVertical))
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasAbajoIzq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantAbajoIzq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosAbajoizq))
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasAbajoDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantAbajoDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosAbajoDer))
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasArribaIzq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantArribaIzq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosArribaIzq))
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasArribaDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantArribaDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosArribaDer)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanelParametros.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabelTextoMatriz.setText("Tamaño de Matriz:");
+
+        jLabelTextoMatrizX.setText("X: ");
+
+        jLabelTextoMatrizY.setText("Y:");
+
+        jLabelTextoOrigen.setText("Posición del origen:");
+
+        jLabelTextoOrigenX.setText("X: ");
+
+        jLabelTextoOrigenY.setText("Y:");
+
+        jLabelTextoDestino.setText("Posición del destino:");
+
+        jLabelTextoDestinoX.setText("X: ");
+
+        jLabelTextoDestinoY.setText("Y:");
+
+        jButtonResolver.setText("Resolver");
+        jButtonResolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResolverActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextFieldMatrizX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldMatrizY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldOrigenX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldOrigenY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldDestinoY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldDestinoX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        javax.swing.GroupLayout jPanelParametrosLayout = new javax.swing.GroupLayout(jPanelParametros);
+        jPanelParametros.setLayout(jPanelParametrosLayout);
+        jPanelParametrosLayout.setHorizontalGroup(
+            jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                                .addComponent(jLabelTextoOrigenX)
+                                .addGap(4, 4, 4)
+                                .addComponent(jFormattedTextFieldOrigenX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTextoOrigenY)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldOrigenY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelTextoMatriz)
+                            .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                                .addComponent(jLabelTextoMatrizX)
+                                .addGap(4, 4, 4)
+                                .addComponent(jFormattedTextFieldMatrizX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTextoMatrizY)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldMatrizY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelTextoOrigen)
+                            .addComponent(jLabelTextoDestino)
+                            .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                                .addComponent(jLabelTextoDestinoX)
+                                .addGap(4, 4, 4)
+                                .addComponent(jFormattedTextFieldDestinoX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTextoDestinoY)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldDestinoY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jButtonResolver)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelParametrosLayout.setVerticalGroup(
+            jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParametrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTextoMatriz)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTextoMatrizX)
+                    .addComponent(jLabelTextoMatrizY)
+                    .addComponent(jFormattedTextFieldMatrizX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldMatrizY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelTextoOrigen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTextoOrigenX)
+                    .addComponent(jLabelTextoOrigenY)
+                    .addComponent(jFormattedTextFieldOrigenX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldOrigenY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelTextoDestino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelTextoDestinoX)
+                        .addComponent(jLabelTextoDestinoY)
+                        .addComponent(jFormattedTextFieldDestinoX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldDestinoY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonResolver)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -81,27 +460,95 @@ public class Ventana extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelParametros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelParametros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelComandos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonNewPipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPipeActionPerformed
-        juego.agregaPipe(0, 0, 2);
-    }//GEN-LAST:event_jButtonNewPipeActionPerformed
+    private void jButtonResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResolverActionPerformed
+        juego.agregaPipe(i, i, 5);
+        ++i;
+        int xO = Integer.parseInt(this.jFormattedTextFieldOrigenX.getText());
+        int yO = Integer.parseInt(this.jFormattedTextFieldOrigenY.getText());
+        int xD = Integer.parseInt(this.jFormattedTextFieldDestinoX.getText());
+        int yD = Integer.parseInt(this.jFormattedTextFieldDestinoY.getText());
+        int xMax = Integer.parseInt(this.jFormattedTextFieldMatrizX.getText());
+        int yMax = Integer.parseInt(this.jFormattedTextFieldMatrizY.getText());
+        HashMap<Integer, Integer> cantidades = new HashMap<Integer, Integer>();
+        cantidades.put(1, Integer.parseInt(this.jLabelCantVertical.getText()));
+        cantidades.put(2, Integer.parseInt(this.jLabelCantHorizontal.getText()));
+        cantidades.put(3, Integer.parseInt(this.jLabelCantAbajoDer.getText()));
+        cantidades.put(4, Integer.parseInt(this.jLabelCantAbajoIzq.getText()));
+        cantidades.put(5, Integer.parseInt(this.jLabelCantArribaDer.getText()));
+        cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
+        juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
+    }//GEN-LAST:event_jButtonResolverActionPerformed
+
+    private void jButtonMasVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasVerticalActionPerformed
+        this.jLabelCantVertical.setText(cambio(this.jLabelCantVertical.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasVerticalActionPerformed
+
+    private void jButtonMenosVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosVerticalActionPerformed
+        this.jLabelCantVertical.setText(cambio(this.jLabelCantVertical.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosVerticalActionPerformed
+
+    private void jButtonMasHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasHorizontalActionPerformed
+        this.jLabelCantHorizontal.setText(cambio(this.jLabelCantHorizontal.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasHorizontalActionPerformed
+
+    private void jButtonMenosHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosHorizontalActionPerformed
+        this.jLabelCantHorizontal.setText(cambio(this.jLabelCantHorizontal.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosHorizontalActionPerformed
+
+    private void jButtonMasAbajoDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasAbajoDerActionPerformed
+        this.jLabelCantAbajoDer.setText(cambio(this.jLabelCantAbajoDer.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasAbajoDerActionPerformed
+
+    private void jButtonMenosAbajoDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosAbajoDerActionPerformed
+        this.jLabelCantAbajoDer.setText(cambio(this.jLabelCantAbajoDer.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosAbajoDerActionPerformed
+
+    private void jButtonMasAbajoIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasAbajoIzqActionPerformed
+        this.jLabelCantAbajoIzq.setText(cambio(this.jLabelCantAbajoIzq.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasAbajoIzqActionPerformed
+
+    private void jButtonMenosAbajoizqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosAbajoizqActionPerformed
+        this.jLabelCantAbajoIzq.setText(cambio(this.jLabelCantAbajoIzq.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosAbajoizqActionPerformed
+
+    private void jButtonMenosArribaDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosArribaDerActionPerformed
+        this.jLabelCantArribaDer.setText(cambio(this.jLabelCantArribaDer.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosArribaDerActionPerformed
+
+    private void jButtonMasArribaIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasArribaIzqActionPerformed
+        this.jLabelCantArribaIzq.setText(cambio(this.jLabelCantArribaIzq.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasArribaIzqActionPerformed
+
+    private void jButtonMenosArribaIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenosArribaIzqActionPerformed
+        this.jLabelCantArribaIzq.setText(cambio(this.jLabelCantArribaIzq.getText(), '-') + "");
+    }//GEN-LAST:event_jButtonMenosArribaIzqActionPerformed
+
+    private void jButtonMasArribaDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasArribaDerActionPerformed
+        this.jLabelCantArribaDer.setText(cambio(this.jLabelCantArribaDer.getText(), '+') + "");
+    }//GEN-LAST:event_jButtonMasArribaDerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,8 +586,42 @@ public class Ventana extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonNewPipe;
+    private javax.swing.JButton jButtonMasAbajoDer;
+    private javax.swing.JButton jButtonMasAbajoIzq;
+    private javax.swing.JButton jButtonMasArribaDer;
+    private javax.swing.JButton jButtonMasArribaIzq;
+    private javax.swing.JButton jButtonMasHorizontal;
+    private javax.swing.JButton jButtonMasVertical;
+    private javax.swing.JButton jButtonMenosAbajoDer;
+    private javax.swing.JButton jButtonMenosAbajoizq;
+    private javax.swing.JButton jButtonMenosArribaDer;
+    private javax.swing.JButton jButtonMenosArribaIzq;
+    private javax.swing.JButton jButtonMenosHorizontal;
+    private javax.swing.JButton jButtonMenosVertical;
+    private javax.swing.JButton jButtonResolver;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDestinoX;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDestinoY;
+    private javax.swing.JFormattedTextField jFormattedTextFieldMatrizX;
+    private javax.swing.JFormattedTextField jFormattedTextFieldMatrizY;
+    private javax.swing.JFormattedTextField jFormattedTextFieldOrigenX;
+    private javax.swing.JFormattedTextField jFormattedTextFieldOrigenY;
+    private javax.swing.JLabel jLabelCantAbajoDer;
+    private javax.swing.JLabel jLabelCantAbajoIzq;
+    private javax.swing.JLabel jLabelCantArribaDer;
+    private javax.swing.JLabel jLabelCantArribaIzq;
+    private javax.swing.JLabel jLabelCantHorizontal;
+    private javax.swing.JLabel jLabelCantVertical;
+    private javax.swing.JLabel jLabelTextoDestino;
+    private javax.swing.JLabel jLabelTextoDestinoX;
+    private javax.swing.JLabel jLabelTextoDestinoY;
+    private javax.swing.JLabel jLabelTextoMatriz;
+    private javax.swing.JLabel jLabelTextoMatrizX;
+    private javax.swing.JLabel jLabelTextoMatrizY;
+    private javax.swing.JLabel jLabelTextoOrigen;
+    private javax.swing.JLabel jLabelTextoOrigenX;
+    private javax.swing.JLabel jLabelTextoOrigenY;
     private javax.swing.JPanel jPanelComandos;
     private javax.swing.JPanel jPanelJuego;
+    private javax.swing.JPanel jPanelParametros;
     // End of variables declaration//GEN-END:variables
 }

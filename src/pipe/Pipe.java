@@ -63,7 +63,7 @@ public class Pipe {
     }
 
     public int getX() {
-        return x;
+        return 105 * x + 10;
     }
 
     public void setX(int x) {
@@ -71,7 +71,7 @@ public class Pipe {
     }
 
     public int getY() {
-        return y;
+        return 105 * y + 10;
     }
 
     public void setY(int y) {
