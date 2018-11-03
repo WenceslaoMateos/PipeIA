@@ -3,17 +3,13 @@
 %se va a dar un listado de piezas (en formato lista, aserto no porque es horroroso al backtracking)
 %Tambien se debe dar un origen y un destino
 %una vez cargado el programa y se va a resolver con eso
-piezas_disponibles([[izq, der], [izq, der], [izq, der], [izq, der], [abajo, arriba], [abajo, arriba], [abajo, der], [izq, arriba]]).
-origen(pieza_ub(0, 4, [der])).
-destino(pieza_ub(6, 1, [izq])).
-%formato de pieza ubicada: pieza_ub(X, Y, [listado de orientaciones])
-
 %limites del tablero
 ubicacion_valida(X, Y) :-
     X > 0,
     Y > 0,
     X < 6,
     Y < 6.
+%formato de pieza ubicada: pieza_ub(X, Y, [listado de orientaciones])
 
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
