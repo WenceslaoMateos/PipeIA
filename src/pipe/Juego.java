@@ -5,9 +5,12 @@
  */
 package pipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import org.jpl7.Query;
+import org.jpl7.Term;
 
 /**
  * La clase juego se encarga de la dirección del juego. Su logica interna.
@@ -63,14 +66,33 @@ public class Juego {
         }
         Query.hasSolution(
                 "consult('pipe.pl')");
-        //Compound compuesto = new Compound()?
-        String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
-        System.out.println(query);
+        //String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
+        //System.out.println(query);
         Query sol = new Query(query);
         if (sol.hasSolution()) {
-            System.out.println(sol.oneSolution(query).get("Sol"));
+            this.transformar(sol);
         } else {
             System.out.println("La query sol = " + query + " no tiene solución.");
+        }
+    }
+
+    private void transformar(Query q) {
+        Map<String, Term>[] solutions = q.allSolutions();
+        ArrayList<String> categories = new ArrayList<String>();
+        String aux2 = "";
+        for (int i = 0; i < solutions.length; i++) {
+            aux2 += "Sol = " + solutions[i].get("Sol") + "\n";
+            Term term = solutions[i].get("Sol");
+            for (Term oneTerm : term.toTermArray()) {
+                categories.add(oneTerm.toString());
+                aux2 += "Ficha: " + oneTerm.arg(1).toString() + ", " + oneTerm.arg(2).toString() + ", [";
+                for (Term aux : oneTerm.arg(3).toTermArray()) {
+                    aux2 += aux.toString() + ", ";
+                }
+                aux2 = aux2.substring(0, aux2.length() - 2);
+                aux2 += "]\n";
+            }
+            System.out.println(aux2);
         }
     }
 
