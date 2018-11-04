@@ -27,9 +27,10 @@ public class Juego {
         String lista = "";
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;
-        int aux = claves.next();
+        int aux;
         String pipe = "";
         while (claves.hasNext()) {
+            aux = claves.next();
             switch (aux) {
                 case 1:
                     pipe = "[arriba, abajo]";
@@ -55,7 +56,6 @@ public class Juego {
             for (i = 0; i < cant; i++) {
                 lista += pipe + ", ";
             }
-            aux = claves.next();
         }
         if (!lista.equals("")) {
             lista = lista.substring(0, lista.length() - 2);
@@ -64,11 +64,11 @@ public class Juego {
         Query.hasSolution(
                 "consult('pipe.pl')");
         //Compound compuesto = new Compound()?
-        String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), piezas_disponibles(" + lista + "), Sol).";
+        String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
         System.out.println(query);
         Query sol = new Query(query);
         if (sol.hasSolution()) {
-            System.out.println(sol.oneSolution(query).get("Sol").toString());
+            System.out.println(sol.oneSolution(query).get("Sol"));
         } else {
             System.out.println("La query sol = " + query + " no tiene solución.");
         }

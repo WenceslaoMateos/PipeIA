@@ -25,18 +25,10 @@ compatibles(der, izq).
 compatibles(arriba, abajo).
 compatibles(abajo, arriba).
 
-al_lado(X1, Y1, X2, Y2) :-
-    X1 = X2,
-    Y1 is Y2 + 1.
-al_lado(X1, Y1, X2, Y2) :-
-    X1 = X2,
-    Y1 is Y2 - 1.
-al_lado(X1, Y1, X2, Y2) :-
-    X1 is X2 + 1,
-    Y1 = Y2.
-al_lado(X1, Y1, X2, Y2) :-
-    X1 is X2 - 1,
-    Y1 = Y2.
+al_lado(X, Y1, X, Y2) :-
+    (Y1 is Y2 + 1; Y1 is Y2 - 1).
+al_lado(X1, Y, X2, Y) :-
+    (X1 is X2 + 1; X1 is X2 - 1).
 
 resolver(Origen, Destino, Piezas, Sol) :-
     res_aux(Origen, Destino, Piezas, [], Sol).
