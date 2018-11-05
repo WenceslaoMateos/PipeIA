@@ -48,6 +48,7 @@ ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :
     member(abajo, LO),
     XP is XO,
     YP is YO + 1,
+    ubicacion_valida(XP, YP),
     disponible(XP, YP, Aux),
     select(arriba, LP, LOS).
 ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
@@ -55,6 +56,7 @@ ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :
     member(der, LO),
     XP is XO + 1,
     YP is YO,
+    ubicacion_valida(XP, YP),
     disponible(XP, YP, Aux),
     select(izq, LP, LOS).
 ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
@@ -62,6 +64,7 @@ ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :
     member(arriba, LO),
     XP is XO,
     YP is YO - 1,
+    ubicacion_valida(XP, YP),
     disponible(XP, YP, Aux),
     select(abajo, LP, LOS).
 ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
@@ -69,6 +72,7 @@ ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :
     member(izq, LO),
     XP is XO - 1,
     YP is YO,
+    ubicacion_valida(XP, YP),
     disponible(XP, YP, Aux),
     select(der, LP, LOS).
 
