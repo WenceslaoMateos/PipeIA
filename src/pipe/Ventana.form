@@ -225,7 +225,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCantVertical">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="text" type="java.lang.String" value="5"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMasHorizontal">
@@ -238,7 +238,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCantHorizontal">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="text" type="java.lang.String" value="5"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMenosHorizontal">
@@ -259,7 +259,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCantAbajoDer">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMenosAbajoDer">
@@ -322,7 +322,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCantArribaIzq">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMenosArribaIzq">

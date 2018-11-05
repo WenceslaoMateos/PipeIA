@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pipe;
 
 import java.awt.Graphics;
@@ -19,9 +14,6 @@ public class VistaPipe extends JPanel {
 
     ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 
-    //TODO aca se va a agregar un factory o similar para poder crear instancias 
-    //diferentes de vista pipe que van a ser diferentes imagenes.
-    //basicamente se va a encargar del creado de las imagenes
     /**
      * Creates new form VistaPipe
      */
@@ -42,6 +34,11 @@ public class VistaPipe extends JPanel {
 
     public void agregaPipe(int x, int y, int op) {
         pipes.add(new Pipe(x, y, op));
+        this.repaint();
+    }
+
+    public void agregaPipe(Pipe aux) {
+        pipes.add(aux);
         this.repaint();
     }
 

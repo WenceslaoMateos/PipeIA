@@ -1,28 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pipe;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Este es un pipe particular, va a tener posicion y un par de boludeces mas
  *
  * @author wenceslao
  */
 public class Pipe {
 
-    /**
-     * @param args the command line arguments
-     *
-     * }
-     */
     private Image imagen;
     private int x;
     private int y;
+
+    public Pipe(int x, int y, String or1, String or2) {
+        String aux = "";
+        if (or1.equals("izq")) {
+            if (or2.equals("der")) {
+                aux = "images/hor.png";
+            }
+            if (or2.equals("arriba")) {
+                aux = "images/arrizq.png";
+            }
+            if (or2.equals("abajo")) {
+                aux = "images/abizq.png";
+            }
+        }
+        if (or1.equals("der")) {
+            if (or2.equals("izq")) {
+                aux = "images/hor.png";
+            }
+            if (or2.equals("arriba")) {
+                aux = "images/arrder.png";
+            }
+            if (or2.equals("abajo")) {
+                aux = "images/abder.png";
+            }
+        }
+        if (or1.equals("arriba")) {
+            if (or2.equals("der")) {
+                aux = "images/arrder.png";
+            }
+            if (or2.equals("izq")) {
+                aux = "images/arrizq.png";
+            }
+            if (or2.equals("abajo")) {
+                aux = "images/vert.png";
+            }
+        }
+        if (or1.equals("abajo")) {
+            if (or2.equals("der")) {
+                aux = "images/abder.png";
+            }
+            if (or2.equals("arriba")) {
+                aux = "images/vert.png";
+            }
+            if (or2.equals("izq")) {
+                aux = "images/abizq.png";
+            }
+        }
+        this.imagen = new ImageIcon(aux).getImage();
+        this.x = x;
+        this.y = y;
+    }
 
     public Pipe(int x, int y, int op) {
         String aux;
@@ -44,6 +84,12 @@ public class Pipe {
                 break;
             case 6:
                 aux = "images/arrizq.png";
+                break;
+            case 7:
+                aux = "images/izq.png";
+                break;
+            case 8:
+                aux = "images/der.png";
                 break;
             default:
                 aux = "";
@@ -77,5 +123,4 @@ public class Pipe {
     public void setY(int y) {
         this.y = y;
     }
-
 }

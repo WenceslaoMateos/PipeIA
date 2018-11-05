@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pipe;
 
 import java.util.ArrayList;
@@ -13,7 +8,6 @@ import org.jpl7.Query;
 import org.jpl7.Term;
 
 /**
- * La clase juego se encarga de la dirección del juego. Su logica interna.
  *
  * @author wenceslao
  */
@@ -26,7 +20,7 @@ public class Juego {
         this.vista = vista;
     }
 
-    public void comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) {
+    public ArrayList<Pipe> comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) {
         String lista = "";
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;
@@ -66,34 +60,33 @@ public class Juego {
         }
         Query.hasSolution(
                 "consult('pipe.pl')");
-        //String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
-        //System.out.println(query);
+        String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
         Query sol = new Query(query);
+        ArrayList<Pipe> aux2 = null;
         if (sol.hasSolution()) {
-            this.transformar(sol);
+            aux2 = this.transformar(sol);
         } else {
             System.out.println("La query sol = " + query + " no tiene solución.");
         }
+        return aux2;
     }
 
-    private void transformar(Query q) {
-        Map<String, Term>[] solutions = q.allSolutions();
-        ArrayList<String> categories = new ArrayList<String>();
+    private ArrayList<Pipe> transformar(Query q) {
+        Map<String, Term> solutions = q.oneSolution();
         String aux2 = "";
-        for (int i = 0; i < solutions.length; i++) {
-            aux2 += "Sol = " + solutions[i].get("Sol") + "\n";
-            Term term = solutions[i].get("Sol");
-            for (Term oneTerm : term.toTermArray()) {
-                categories.add(oneTerm.toString());
-                aux2 += "Ficha: " + oneTerm.arg(1).toString() + ", " + oneTerm.arg(2).toString() + ", [";
-                for (Term aux : oneTerm.arg(3).toTermArray()) {
-                    aux2 += aux.toString() + ", ";
-                }
-                aux2 = aux2.substring(0, aux2.length() - 2);
-                aux2 += "]\n";
+        ArrayList<Pipe> solucion = new ArrayList<Pipe>();
+        Pipe pieza;
+        Term term = solutions.get("Sol");
+        for (Term oneTerm : term.toTermArray()) {
+            ArrayList<String> oris = new ArrayList<String>();
+            for (Term aux : oneTerm.arg(3).toTermArray()) {
+                oris.add(aux.toString());
             }
-            System.out.println(aux2);
+            pieza = new Pipe(Integer.parseInt(oneTerm.arg(1).toString()), Integer.parseInt(oneTerm.arg(2).toString()), oris.get(0), oris.get(1));
+            solucion.add(pieza);
         }
+        System.out.println(aux2);
+        return solucion;
     }
 
     public static Juego getJuego(VistaPipe vista) {

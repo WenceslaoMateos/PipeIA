@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.JFrame;
 
 /**
- * La ventana solamente se encarga de la parte visual de comienzo del juego y
- * quizas en un futuro de funciones mas avanzadas.
  *
  * @author wenceslao
  */
@@ -19,9 +14,6 @@ public class Ventana extends JFrame {
     private Juego juego;
     public int i = 0;
 
-    /**
-     * Creates new form Ventana
-     */
     public Ventana() {
         initComponents();
         this.juego = Juego.getJuego((VistaPipe) this.jPanelJuego);
@@ -44,7 +36,7 @@ public class Ventana extends JFrame {
         panel.agregaPipe(8, 0, 5);
         panel.agregaPipe(10, 0, 6);
     }
- 
+
     private int cambio(String valor, char op) {
         int aux = Integer.parseInt(valor);
         if (aux > 0) {
@@ -142,7 +134,7 @@ public class Ventana extends JFrame {
             }
         });
 
-        jLabelCantVertical.setText("0");
+        jLabelCantVertical.setText("5");
 
         jButtonMasHorizontal.setText("+");
         jButtonMasHorizontal.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +143,7 @@ public class Ventana extends JFrame {
             }
         });
 
-        jLabelCantHorizontal.setText("0");
+        jLabelCantHorizontal.setText("5");
 
         jButtonMenosHorizontal.setText("-");
         jButtonMenosHorizontal.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +159,7 @@ public class Ventana extends JFrame {
             }
         });
 
-        jLabelCantAbajoDer.setText("0");
+        jLabelCantAbajoDer.setText("1");
 
         jButtonMenosAbajoDer.setText("-");
         jButtonMenosAbajoDer.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +207,7 @@ public class Ventana extends JFrame {
             }
         });
 
-        jLabelCantArribaIzq.setText("0");
+        jLabelCantArribaIzq.setText("1");
 
         jButtonMenosArribaIzq.setText("-");
         jButtonMenosArribaIzq.addActionListener(new java.awt.event.ActionListener() {
@@ -484,7 +476,6 @@ public class Ventana extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResolverActionPerformed
-        juego.agregaPipe(i, i, 5);
         ++i;
         int xO = Integer.parseInt(this.jFormattedTextFieldOrigenX.getText());
         int yO = Integer.parseInt(this.jFormattedTextFieldOrigenY.getText());
@@ -499,7 +490,16 @@ public class Ventana extends JFrame {
         cantidades.put(4, Integer.parseInt(this.jLabelCantAbajoIzq.getText()));
         cantidades.put(5, Integer.parseInt(this.jLabelCantArribaDer.getText()));
         cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
-        juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
+        ArrayList<Pipe> resultados = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
+        VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
+        paneldejuego.agregaPipe(xO, yO, 8);
+        paneldejuego.agregaPipe(xD, yD, 7);
+        Iterator<Pipe> valores = resultados.iterator();
+        Pipe aux;
+        while (valores.hasNext()) {
+            aux = valores.next();
+            paneldejuego.agregaPipe(aux);
+        }
     }//GEN-LAST:event_jButtonResolverActionPerformed
 
     private void jButtonMasVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasVerticalActionPerformed
