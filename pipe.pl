@@ -9,7 +9,7 @@ ubicacion_valida(X, Y) :-
     Y > 0,
     X < 6,
     Y < 6.
-%formato de pieza ubicada: pieza_ub(X, Y, [listado de orientaciones])
+%formato de pieza ubicada: pieza_ub(X, Y, [listado de bocas])
 
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
@@ -25,56 +25,36 @@ compatibles(der, izq).
 compatibles(arriba, abajo).
 compatibles(abajo, arriba).
 
-al_lado(X, Y1, X, Y2) :-
-    (Y1 is Y2 + 1; Y1 is Y2 - 1).
-al_lado(X1, Y, X2, Y) :-
-    (X1 is X2 + 1; X1 is X2 - 1).
+ubicar_al_lado(extremo(XE, YE, izq), X, YE) :-
+    X is XE - 1.
+ubicar_al_lado(extremo(XE, YE, der), X, YE) :-
+    X is XE + 1.
+ubicar_al_lado(extremo(XE, YE, arriba), XE, Y) :-
+    Y is YE - 1.
+ubicar_al_lado(extremo(XE, YE, abajo), XE, Y) :-
+    Y is YE + 1.
+
 
 resolver(Origen, Destino, Piezas, Sol) :-
     res_aux(Origen, Destino, Piezas, [], Sol).
 
-res_aux(pieza_ub(XO, YO, [BO]), pieza_ub(XD, YD, [BD]), _, Aux, Aux) :-
+res_aux(extremo(XO, YO, BO), extremo(XD, YD, BD), _, Aux, Aux) :-
     compatibles(BO, BD),
-    al_lado(XO, YO, XD, YD).
+    ubicar_al_lado(extremo(XO, YO, BO), XD, YD).
 res_aux(Origen, Destino, Piezas, Aux, Sol) :-
-    select(P, Piezas, Resto),
-    PS = pieza_ub(_, _, P),
-    ubicar(PS, Origen, Aux, OrigenSig),
-    append(Aux, [PS], Aux1),
+    Nuevo = pieza_ub(X, Y, Pieza),
+    OrigenSig = extremo(X, Y, _),
+    ubicar_al_lado(Origen, X, Y),
+    disponible(X, Y, Aux),
+    seleccionar_pieza(Origen, Piezas, Pieza, Resto, OrigenSig),
+    append(Aux, [Nuevo], Aux1),
     res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
 
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
-    member(arriba, LP),
-    member(abajo, LO),
-    XP is XO,
-    YP is YO + 1,
-    ubicacion_valida(XP, YP),
-    disponible(XP, YP, Aux),
-    select(arriba, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
-    member(izq, LP),
-    member(der, LO),
-    XP is XO + 1,
-    YP is YO,
-    ubicacion_valida(XP, YP),
-    disponible(XP, YP, Aux),
-    select(izq, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
-    member(abajo, LP),
-    member(arriba, LO),
-    XP is XO,
-    YP is YO - 1,
-    ubicacion_valida(XP, YP),
-    disponible(XP, YP, Aux),
-    select(abajo, LP, LOS).
-ubicar(pieza_ub(XP, YP, LP), pieza_ub(XO, YO, LO), Aux, pieza_ub(XP, YP, LOS)) :-
-    member(der, LP),
-    member(izq, LO),
-    XP is XO - 1,
-    YP is YO,
-    ubicacion_valida(XP, YP),
-    disponible(XP, YP, Aux),
-    select(der, LP, LOS).
+seleccionar_pieza(extremo(_, _, BO), Piezas, Pieza, Resto, extremo(_, _, BS)) :-
+    compatibles(BO, BP),
+    select(Pieza, Piezas, Resto),
+    select(BP, Pieza, Aux),
+    member(BS, Aux).
 
 %al momento en que origen y destino es el mismo, quiere decir que llegaste.
 
