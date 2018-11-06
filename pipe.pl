@@ -34,7 +34,6 @@ ubicar_al_lado(extremo(XE, YE, arriba), XE, Y) :-
 ubicar_al_lado(extremo(XE, YE, abajo), XE, Y) :-
     Y is YE + 1.
 
-
 resolver(Origen, Destino, Piezas, Sol) :-
     res_aux(Origen, Destino, Piezas, [], Sol).
 
