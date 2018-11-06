@@ -60,7 +60,8 @@ public class Juego {
         }
         Query.hasSolution(
                 "consult('pipe.pl')");
-        String query = "resolver(pieza_ub(" + xO + ", " + yO + ", [der]), pieza_ub(" + xD + ", " + yD + ", [izq]), " + lista + ", Sol).";
+        String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", "+ this.orientar(xD, yD) +"), " + lista + ", Sol).";
+        System.out.println(query);
         Query sol = new Query(query);
         ArrayList<Pipe> aux2 = null;
         if (sol.hasSolution()) {
@@ -87,6 +88,26 @@ public class Juego {
         }
         System.out.println(aux2);
         return solucion;
+    }
+
+    public String orientar(int x, int y) {
+        String aux = "";
+        if (x == 0) {
+            aux = "der";
+        } else {
+            if (x == 6) {
+                aux = "izq";
+            } else {
+                if (y == 0) {
+                    aux = "abajo";
+                } else {
+                    if (y == 6) {
+                        aux = "arriba";
+                    }
+                }
+            }
+        }
+        return aux;
     }
 
     public static Juego getJuego(VistaPipe vista) {
