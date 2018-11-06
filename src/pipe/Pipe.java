@@ -91,6 +91,12 @@ public class Pipe {
             case 8:
                 aux = "images/der.png";
                 break;
+            case 9:
+                aux = "images/arriba.png";
+                break;
+            case 10:
+                aux = "images/abajo.png";
+                break;
             default:
                 aux = "";
                 break;

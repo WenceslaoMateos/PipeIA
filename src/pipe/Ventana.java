@@ -55,6 +55,26 @@ public class Ventana extends JFrame {
         return aux;
     }
 
+    public int orientar(int x, int y) {
+        int aux = 1;
+        if (x == 0) {
+            aux = 8;
+        } else {
+            if (x == 6) {
+                aux = 7;
+            } else {
+                if (y == 0) {
+                    aux = 10;
+                } else {
+                    if (y == 6) {
+                        aux = 9;
+                    }
+                }
+            }
+        }
+        return aux;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -492,8 +512,8 @@ public class Ventana extends JFrame {
         cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
         ArrayList<Pipe> resultados = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
         VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
-        paneldejuego.agregaPipe(xO, yO, 8);
-        paneldejuego.agregaPipe(xD, yD, 7);
+        paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
+        paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
         Iterator<Pipe> valores = resultados.iterator();
         Pipe aux;
         while (valores.hasNext()) {
