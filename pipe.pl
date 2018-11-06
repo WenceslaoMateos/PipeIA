@@ -34,7 +34,6 @@ ubicar_al_lado(extremo(XE, YE, arriba), XE, Y) :-
 ubicar_al_lado(extremo(XE, YE, abajo), XE, Y) :-
     Y is YE + 1.
 
-
 resolver(Origen, Destino, Piezas, Sol) :-
     res_aux(Origen, Destino, Piezas, [], Sol).
 
@@ -42,12 +41,12 @@ res_aux(extremo(XO, YO, BO), extremo(XD, YD, BD), _, Aux, Aux) :-
     compatibles(BO, BD),
     ubicar_al_lado(extremo(XO, YO, BO), XD, YD).
 res_aux(Origen, Destino, Piezas, Aux, Sol) :-
-    Nuevo = pieza_ub(X, Y, Pieza),
     OrigenSig = extremo(X, Y, _),
     ubicar_al_lado(Origen, X, Y),
+    ubicacion_valida(X, Y),
     disponible(X, Y, Aux),
     seleccionar_pieza(Origen, Piezas, Pieza, Resto, OrigenSig),
-    append(Aux, [Nuevo], Aux1),
+    append(Aux, [pieza_ub(X, Y, Pieza)], Aux1),
     res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
 
 seleccionar_pieza(extremo(_, _, BO), Piezas, Pieza, Resto, extremo(_, _, BS)) :-
