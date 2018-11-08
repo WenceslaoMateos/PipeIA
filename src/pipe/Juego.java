@@ -25,41 +25,41 @@ public class Juego {
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;
         int aux;
+        int cant;
         String pipe = "";
         while (claves.hasNext()) {
             aux = claves.next();
-            switch (aux) {
-                case 1:
-                    pipe = "[arriba, abajo]";
-                    break;
-                case 2:
-                    pipe = "[izq, der]";
-                    break;
-                case 3:
-                    pipe = "[abajo, der]";
-                    break;
-                case 4:
-                    pipe = "[abajo, izq]";
-                    break;
-                case 5:
-                    pipe = "[arriba, der]";
-                    break;
-                case 6:
-                    pipe = "[arriba, izq]";
-                    break;
-                default:
-            }
-            int cant = cantidades.get(aux);
-            for (i = 0; i < cant; i++) {
-                lista += pipe + ", ";
+            cant = cantidades.get(aux);
+            if (cant > 0) {
+                switch (aux) {
+                    case 1:
+                        pipe = "[arriba, abajo]";
+                        break;
+                    case 2:
+                        pipe = "[izq, der]";
+                        break;
+                    case 3:
+                        pipe = "[abajo, der]";
+                        break;
+                    case 4:
+                        pipe = "[abajo, izq]";
+                        break;
+                    case 5:
+                        pipe = "[arriba, der]";
+                        break;
+                    case 6:
+                        pipe = "[arriba, izq]";
+                        break;
+                    default:
+                }
+                lista += "pieza(" + cant + ", " + pipe + "), ";
             }
         }
         if (!lista.equals("")) {
             lista = lista.substring(0, lista.length() - 2);
             lista = "[" + lista + "]";
         }
-        Query.hasSolution(
-                "consult('pipe.pl')");
+        Query.hasSolution("consult('pipe.pl')");
         String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", "+ this.orientar(xD, yD) +"), " + lista + ", Sol).";
         System.out.println(query);
         Query sol = new Query(query);

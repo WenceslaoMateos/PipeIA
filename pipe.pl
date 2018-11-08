@@ -50,10 +50,17 @@ res_aux(Origen, Destino, Piezas, Aux, Sol) :-
     res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
 
 seleccionar_pieza(extremo(_, _, BO), Piezas, Pieza, Resto, extremo(_, _, BS)) :-
+    Tipo = pieza(_, Pieza),
     compatibles(BO, BP),
-    select(Pieza, Piezas, Resto),
+    select(Tipo, Piezas, R),
     select(BP, Pieza, Aux),
+    decrementar_cantidad(Tipo, R, Resto),
     member(BS, Aux).
+
+decrementar_cantidad(pieza(1, _), Piezas, Piezas) :-
+    !.
+decrementar_cantidad(pieza(Cant1, Bocas), Piezas, [pieza(Cant2, Bocas) | Piezas]) :-
+    Cant2 is Cant1 - 1.
 
 %al momento en que origen y destino es el mismo, quiere decir que llegaste.
 
