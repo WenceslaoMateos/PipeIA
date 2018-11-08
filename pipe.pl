@@ -5,10 +5,9 @@ ubicacion_valida(X, Y) :-
     Y < 6.
 
 disponible(_, _, []).
-disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
-    X \= XA;
-    Y \= YA.
-disponible(X, Y, [_ | Cola]):-
+disponible(X, Y, [pieza_ub(XA, YA, _) | Cola]) :-
+    (X \= XA;
+    Y \= YA),
     disponible(X, Y, Cola).
 
 compatibles(izq, der).
