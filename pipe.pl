@@ -6,10 +6,8 @@ ubicacion_valida(X, Y) :-
 
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
-    X = XA,
-    Y = YA,
-    !,
-    fail.
+    X \= XA;
+    Y \= YA.
 disponible(X, Y, [_ | Cola]):-
     disponible(X, Y, Cola).
 
