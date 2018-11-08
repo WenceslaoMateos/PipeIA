@@ -1,15 +1,8 @@
-%representar las piezas como una lista de huecos
-%pieza([arriba, abajo, izquierda, derecha]).
-%se va a dar un listado de piezas (en formato lista, aserto no porque es horroroso al backtracking)
-%Tambien se debe dar un origen y un destino
-%una vez cargado el programa y se va a resolver con eso
-%limites del tablero
 ubicacion_valida(X, Y) :-
     X > 0,
     Y > 0,
     X < 6,
     Y < 6.
-%formato de pieza ubicada: pieza_ub(X, Y, [listado de bocas])
 
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | _]) :-
@@ -61,7 +54,3 @@ decrementar_cantidad(pieza(1, _), Piezas, Piezas) :-
     !.
 decrementar_cantidad(pieza(Cant1, Bocas), Piezas, [pieza(Cant2, Bocas) | Piezas]) :-
     Cant2 is Cant1 - 1.
-
-%al momento en que origen y destino es el mismo, quiere decir que llegaste.
-
-%el resultado es un listado de estructuras conformadas por piezas ubicadas.
