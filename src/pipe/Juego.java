@@ -26,33 +26,11 @@ public class Juego {
         int i;
         int aux;
         int cant;
-        String pipe = "";
         while (claves.hasNext()) {
             aux = claves.next();
             cant = cantidades.get(aux);
             if (cant > 0) {
-                switch (aux) {
-                    case 1:
-                        pipe = "[arriba, abajo]";
-                        break;
-                    case 2:
-                        pipe = "[izq, der]";
-                        break;
-                    case 3:
-                        pipe = "[abajo, der]";
-                        break;
-                    case 4:
-                        pipe = "[abajo, izq]";
-                        break;
-                    case 5:
-                        pipe = "[arriba, der]";
-                        break;
-                    case 6:
-                        pipe = "[arriba, izq]";
-                        break;
-                    default:
-                }
-                lista += "pieza(" + cant + ", " + pipe + "), ";
+                lista += "tipo(" + cant + ", " + aux + "), ";
             }
         }
         if (!lista.equals("")) {
@@ -60,7 +38,7 @@ public class Juego {
             lista = "[" + lista + "]";
         }
         Query.hasSolution("consult('pipe.pl')");
-        String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", "+ this.orientar(xD, yD) +"), " + lista + ", Sol).";
+        String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", " + this.orientar(xD, yD) + "), " + lista + ", Sol).";
         System.out.println(query);
         Query sol = new Query(query);
         ArrayList<Pipe> aux2 = null;
@@ -79,11 +57,7 @@ public class Juego {
         Pipe pieza;
         Term term = solutions.get("Sol");
         for (Term oneTerm : term.toTermArray()) {
-            ArrayList<String> oris = new ArrayList<String>();
-            for (Term aux : oneTerm.arg(3).toTermArray()) {
-                oris.add(aux.toString());
-            }
-            pieza = new Pipe(Integer.parseInt(oneTerm.arg(1).toString()), Integer.parseInt(oneTerm.arg(2).toString()), oris.get(0), oris.get(1));
+            pieza = new Pipe(Integer.parseInt(oneTerm.arg(1).toString()), Integer.parseInt(oneTerm.arg(2).toString()), Integer.parseInt(oneTerm.arg(3).toString()) );
             solucion.add(pieza);
         }
         System.out.println(aux2);
