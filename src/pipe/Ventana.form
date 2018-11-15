@@ -69,12 +69,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1174" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="514" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="352" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -95,7 +95,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosVertical" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasVertical" min="-2" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                           <Component id="jLabelCantVertical" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosHorizontal" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasHorizontal" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
                           <Component id="jLabelCantHorizontal" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosAbajoDer" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasAbajoDer" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
                           <Component id="jLabelCantAbajoDer" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosAbajoizq" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasAbajoIzq" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -131,7 +131,7 @@
                           <Component id="jLabelCantAbajoIzq" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="160" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosArribaDer" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasArribaDer" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -140,7 +140,7 @@
                           <Component id="jLabelCantArribaDer" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonMenosArribaIzq" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMasArribaIzq" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -149,7 +149,7 @@
                           <Component id="jLabelCantArribaIzq" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -159,13 +159,20 @@
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="jButtonMasAbajoDer" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabelCantAbajoDer" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButtonMenosAbajoDer" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Component id="jButtonMasHorizontal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelCantHorizontal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButtonMenosHorizontal" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jButtonMasVertical" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelCantVertical" min="-2" max="-2" attributes="0"/>
@@ -178,13 +185,6 @@
                           <Component id="jLabelCantAbajoIzq" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButtonMenosAbajoizq" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButtonMasAbajoDer" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabelCantAbajoDer" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonMenosAbajoDer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jButtonMasArribaIzq" min="-2" max="-2" attributes="0"/>
@@ -427,7 +427,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButtonResolver" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace pref="130" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

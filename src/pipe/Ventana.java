@@ -19,7 +19,6 @@ public class Ventana extends JFrame {
         this.juego = Juego.getJuego((VistaPipe) this.jPanelJuego);
         this.initComand((VistaPipe) this.jPanelComandos);
         this.setTitle("Trabajo Final IA: Pipes por Pablos y Mateos");
-        this.setExtendedState(MAXIMIZED_BOTH);
         this.jFormattedTextFieldDestinoX.setText("6");
         this.jFormattedTextFieldDestinoY.setText("1");
         this.jFormattedTextFieldOrigenX.setText("0");
@@ -29,12 +28,12 @@ public class Ventana extends JFrame {
     }
 
     private void initComand(VistaPipe panel) {
-        panel.agregaPipe(0, 0, 1);
-        panel.agregaPipe(2, 0, 2);
-        panel.agregaPipe(4, 0, 3);
-        panel.agregaPipe(6, 0, 4);
-        panel.agregaPipe(8, 0, 5);
-        panel.agregaPipe(10, 0, 6);
+        panel.agregaPipe(0, 1, 1);
+        panel.agregaPipe(2, 1, 2);
+        panel.agregaPipe(4, 1, 3);
+        panel.agregaPipe(6, 1, 4);
+        panel.agregaPipe(8, 1, 5);
+        panel.agregaPipe(10, 1, 6);
     }
 
     private int cambio(String valor, char op) {
@@ -131,11 +130,11 @@ public class Ventana extends JFrame {
         jPanelJuego.setLayout(jPanelJuegoLayout);
         jPanelJuegoLayout.setHorizontalGroup(
             jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1174, Short.MAX_VALUE)
+            .addGap(0, 514, Short.MAX_VALUE)
         );
         jPanelJuegoLayout.setVerticalGroup(
             jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 352, Short.MAX_VALUE)
         );
 
         jPanelComandos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -241,49 +240,49 @@ public class Ventana extends JFrame {
         jPanelComandosLayout.setHorizontalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
-                .addGap(128, 128, 128)
+                .addGap(52, 52, 52)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosVertical)
                     .addComponent(jButtonMasVertical)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantVertical)))
-                .addGap(162, 162, 162)
+                .addGap(77, 77, 77)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosHorizontal)
                     .addComponent(jButtonMasHorizontal)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantHorizontal)))
-                .addGap(171, 171, 171)
+                .addGap(58, 58, 58)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosAbajoDer)
                     .addComponent(jButtonMasAbajoDer)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantAbajoDer)))
-                .addGap(179, 179, 179)
+                .addGap(68, 68, 68)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosAbajoizq)
                     .addComponent(jButtonMasAbajoIzq)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantAbajoIzq)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosArribaDer)
                     .addComponent(jButtonMasArribaDer)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantArribaDer)))
-                .addGap(165, 165, 165)
+                .addGap(71, 71, 71)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMenosArribaIzq)
                     .addComponent(jButtonMasArribaIzq)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabelCantArribaIzq)))
-                .addGap(105, 105, 105))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelComandosLayout.setVerticalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,12 +290,18 @@ public class Ventana extends JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonMasAbajoDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCantAbajoDer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonMenosAbajoDer))
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addComponent(jButtonMasHorizontal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelCantHorizontal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonMenosHorizontal))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelComandosLayout.createSequentialGroup()
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addComponent(jButtonMasVertical)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelCantVertical)
@@ -308,12 +313,6 @@ public class Ventana extends JFrame {
                         .addComponent(jLabelCantAbajoIzq)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonMenosAbajoizq))
-                    .addGroup(jPanelComandosLayout.createSequentialGroup()
-                        .addComponent(jButtonMasAbajoDer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelCantAbajoDer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonMenosAbajoDer))
                     .addGroup(jPanelComandosLayout.createSequentialGroup()
                         .addComponent(jButtonMasArribaIzq)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -463,7 +462,7 @@ public class Ventana extends JFrame {
                     .addComponent(jFormattedTextFieldDestinoY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonResolver)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -512,6 +511,7 @@ public class Ventana extends JFrame {
         cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
         ArrayList<Pipe> resultados = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
         VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
+        paneldejuego.reiniciar();
         paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
         paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
         Iterator<Pipe> valores = resultados.iterator();
