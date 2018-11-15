@@ -1,3 +1,4 @@
+% pieza(id, bocas).
 pieza(1, [arriba, abajo]).
 pieza(2, [izq, der]).
 pieza(3, [abajo, der]).
@@ -11,6 +12,7 @@ ubicacion_valida(X, Y) :-
     X < 6,
     Y < 6.
 
+% Un espacio esta disponible si ninguna pieza esta sobre ella
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | Cola]) :-
     (X \= XA; Y \= YA),
@@ -21,6 +23,7 @@ compatibles(der, izq).
 compatibles(arriba, abajo).
 compatibles(abajo, arriba).
 
+% extremo(PosX, PosY, BocaLibre)
 ubicar_al_lado(extremo(XE, YE, izq), X, YE) :-
     X is XE - 1.
 ubicar_al_lado(extremo(XE, YE, der), X, YE) :-
