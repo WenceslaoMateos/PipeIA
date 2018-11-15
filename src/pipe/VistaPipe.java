@@ -41,6 +41,10 @@ public class VistaPipe extends JPanel {
         pipes.add(aux);
         this.repaint();
     }
+    
+    public void reiniciar(){
+        this.pipes = new ArrayList<Pipe>();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
