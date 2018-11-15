@@ -1,3 +1,10 @@
+pieza(1, [arriba, abajo]).
+pieza(2, [izq, der]).
+pieza(3, [abajo, der]).
+pieza(4, [abajo,izq]).
+pieza(5, [der, arriba]).
+pieza(6, [izq, arriba]).
+
 ubicacion_valida(X, Y) :-
     X > 0,
     Y > 0,
@@ -6,8 +13,7 @@ ubicacion_valida(X, Y) :-
 
 disponible(_, _, []).
 disponible(X, Y, [pieza_ub(XA, YA, _) | Cola]) :-
-    (X \= XA;
-    Y \= YA),
+    (X \= XA; Y \= YA),
     disponible(X, Y, Cola).
 
 compatibles(izq, der).
@@ -40,14 +46,15 @@ res_aux(Origen, Destino, Piezas, Aux, Sol) :-
     res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
 
 seleccionar_pieza(extremo(_, _, BO), Piezas, Pieza, Resto, extremo(_, _, BS)) :-
-    Tipo = pieza(_, Pieza),
+    Tipo = tipo(_, Pieza),
     compatibles(BO, BP),
     select(Tipo, Piezas, R),
-    select(BP, Pieza, Aux),
+    pieza(Pieza, Bocas),
+    select(BP, Bocas, Aux),
     decrementar_cantidad(Tipo, R, Resto),
     member(BS, Aux).
 
-decrementar_cantidad(pieza(1, _), Piezas, Piezas) :-
+decrementar_cantidad(tipo(1, _), Piezas, Piezas) :-
     !.
-decrementar_cantidad(pieza(Cant1, Bocas), Piezas, [pieza(Cant2, Bocas) | Piezas]) :-
+decrementar_cantidad(tipo(Cant1, Bocas), Piezas, [tipo(Cant2, Bocas) | Piezas]) :-
     Cant2 is Cant1 - 1.
