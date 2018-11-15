@@ -41,6 +41,7 @@ res_aux(Origen, Destino, Piezas, Aux, Sol) :-
     ubicar_al_lado(Origen, X, Y),
     ubicacion_valida(X, Y),
     disponible(X, Y, Aux),
+    !,
     seleccionar_pieza(Origen, Piezas, Pieza, Resto, OrigenSig),
     append(Aux, [pieza_ub(X, Y, Pieza)], Aux1),
     res_aux(OrigenSig, Destino, Resto, Aux1, Sol).
