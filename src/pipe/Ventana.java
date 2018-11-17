@@ -31,6 +31,8 @@ public class Ventana extends JFrame {
         this.jFormattedTextFieldOrigenY.setText("4");
         this.jFormattedTextFieldMatrizX.setText("6");
         this.jFormattedTextFieldMatrizY.setText("6");
+        this.jButtonAntSol.setEnabled(false);
+        this.jButtonSigSol.setEnabled(false);
     }
 
     private void initComand(VistaPipe panel) {
@@ -127,6 +129,7 @@ public class Ventana extends JFrame {
         jFormattedTextFieldDestinoY = new javax.swing.JFormattedTextField();
         jFormattedTextFieldDestinoX = new javax.swing.JFormattedTextField();
         jButtonSigSol = new javax.swing.JButton();
+        jButtonAntSol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -405,6 +408,13 @@ public class Ventana extends JFrame {
             }
         });
 
+        jButtonAntSol.setText("Ant Solución");
+        jButtonAntSol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAntSolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelParametrosLayout = new javax.swing.GroupLayout(jPanelParametros);
         jPanelParametros.setLayout(jPanelParametrosLayout);
         jPanelParametrosLayout.setHorizontalGroup(
@@ -445,7 +455,9 @@ public class Ventana extends JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelParametrosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSigSol)
+                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAntSol)
+                    .addComponent(jButtonSigSol))
                 .addGap(19, 19, 19))
         );
         jPanelParametrosLayout.setVerticalGroup(
@@ -480,6 +492,8 @@ public class Ventana extends JFrame {
                 .addComponent(jButtonResolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSigSol)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAntSol)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -540,6 +554,8 @@ public class Ventana extends JFrame {
                 paneldejuego.agregaPipe(aux);
             }
             this.actual++;
+            this.jButtonAntSol.setEnabled(true);
+            this.jButtonSigSol.setEnabled(true);
         } catch (NoSolutionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -616,6 +632,29 @@ public class Ventana extends JFrame {
         }
     }//GEN-LAST:event_jButtonSigSolActionPerformed
 
+    private void jButtonAntSolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAntSolActionPerformed
+        this.actual--;
+        int xO = Integer.parseInt(this.jFormattedTextFieldOrigenX.getText());
+        int yO = Integer.parseInt(this.jFormattedTextFieldOrigenY.getText());
+        int xD = Integer.parseInt(this.jFormattedTextFieldDestinoX.getText());
+        int yD = Integer.parseInt(this.jFormattedTextFieldDestinoY.getText());
+        VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
+        paneldejuego.reiniciar();
+        if (this.actual >= 0) {
+            Iterator<Pipe> valores = (juego.transformar(resultados[this.actual])).iterator();
+            paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
+            paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
+            Pipe aux;
+            while (valores.hasNext()) {
+                aux = valores.next();
+                paneldejuego.agregaPipe(aux);
+            }
+        } else {
+            this.actual = this.resultados.length;
+            JOptionPane.showMessageDialog(this, "Inicio de soluciones");
+        }
+    }//GEN-LAST:event_jButtonAntSolActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -652,6 +691,7 @@ public class Ventana extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAntSol;
     private javax.swing.JButton jButtonMasAbajoDer;
     private javax.swing.JButton jButtonMasAbajoIzq;
     private javax.swing.JButton jButtonMasArribaDer;
