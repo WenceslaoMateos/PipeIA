@@ -3,10 +3,6 @@ package pipe;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author wenceslao
- */
 public class Pipe {
 
     private Image imagen;
