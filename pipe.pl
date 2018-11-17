@@ -1,3 +1,4 @@
+%base de datos representada de la forma "id, listado de bocas"
 pieza(1, [arriba, abajo]).
 pieza(2, [izq, der]).
 pieza(3, [abajo, der]).
@@ -5,22 +6,28 @@ pieza(4, [abajo,izq]).
 pieza(5, [der, arriba]).
 pieza(6, [izq, arriba]).
 
+%define el tamaño de la matriz de celdas 
 ubicacion_valida(X, Y) :-
     X > 0,
     Y > 0,
     X < 6,
     Y < 6.
 
+%una ubicación está disponible si la lista de piezas ubicadas está vacia
 disponible(_, _, []).
+% verifica que una ubicación esté disponible en el listado de piezas ubicadas
 disponible(X, Y, [pieza_ub(XA, YA, _) | Cola]) :-
     (X \= XA; Y \= YA),
     disponible(X, Y, Cola).
 
+%establece compatibilidad de bocas libres para la selección de la proxima pieza a ubicar
 compatibles(izq, der).
 compatibles(der, izq).
 compatibles(arriba, abajo).
 compatibles(abajo, arriba).
 
+%dado un extremo y la posición actual de la ultima pieza ubicada, establece la siguiente posición
+%en la que se va a ubicar una pieza teniendo en cuenta la orientación de la boca libre
 ubicar_al_lado(extremo(XE, YE, izq), X, YE) :-
     X is XE - 1.
 ubicar_al_lado(extremo(XE, YE, der), X, YE) :-
