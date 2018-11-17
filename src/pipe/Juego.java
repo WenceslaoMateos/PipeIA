@@ -20,7 +20,7 @@ public class Juego {
         this.vista = vista;
     }
 
-    public ArrayList<Pipe> comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) {
+    public Map<String, Term>[] comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) throws NoSolutionException {
         String lista = "";
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;
@@ -39,25 +39,27 @@ public class Juego {
         }
         Query.hasSolution("consult('pipe.pl')");
         String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", " + this.orientar(xD, yD) + "), " + lista + ", Sol).";
-        System.out.println(query);
         Query sol = new Query(query);
-        ArrayList<Pipe> aux2 = null;
+        Map<String, Term>[] aux2 = null;
         if (sol.hasSolution()) {
-            aux2 = this.transformar(sol);
+            aux2 = this.resolver(sol);
         } else {
-            System.out.println("La query sol = " + query + " no tiene solución.");
+            throw new NoSolutionException("La query sol = " + query + " no tiene solución.");
         }
         return aux2;
     }
 
-    private ArrayList<Pipe> transformar(Query q) {
-        Map<String, Term> solutions = q.oneSolution();
+    private Map<String, Term>[] resolver(Query q) {
+        return q.allSolutions();
+    }
+
+    public ArrayList<Pipe> transformar(Map<String, Term> solutions) {
         String aux2 = "";
         ArrayList<Pipe> solucion = new ArrayList<Pipe>();
         Pipe pieza;
         Term term = solutions.get("Sol");
         for (Term oneTerm : term.toTermArray()) {
-            pieza = new Pipe(Integer.parseInt(oneTerm.arg(1).toString()), Integer.parseInt(oneTerm.arg(2).toString()), Integer.parseInt(oneTerm.arg(3).toString()) );
+            pieza = new Pipe(Integer.parseInt(oneTerm.arg(1).toString()), Integer.parseInt(oneTerm.arg(2).toString()), Integer.parseInt(oneTerm.arg(3).toString()));
             solucion.add(pieza);
         }
         System.out.println(aux2);
