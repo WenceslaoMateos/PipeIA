@@ -10,8 +10,6 @@ import org.jpl7.Term;
 public class Ventana extends JFrame {
 
     private Juego juego;
-    private Map<String, Term>[] resultados;
-    private int actual;
 
     public Ventana() {
         initComponents();
@@ -516,11 +514,10 @@ public class Ventana extends JFrame {
         cantidades.put(5, Integer.parseInt(this.jLabelCantArribaDer.getText()));
         cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
         try {
-            this.resultados = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
-            this.actual = 0;
+            Map<String, Term> sol = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
             VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
             paneldejuego.reiniciar();
-            Iterator<Pipe> valores = (juego.transformar(resultados[this.actual])).iterator();
+            Iterator<Pipe> valores = (juego.transformar(sol)).iterator();
             paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
             paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
             Pipe aux;
@@ -528,10 +525,9 @@ public class Ventana extends JFrame {
                 aux = valores.next();
                 paneldejuego.agregaPipe(aux);
             }
-            this.actual++;
             this.jButtonSigSol.setEnabled(true);
         } catch (NoSolutionException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, "El problema planteado no tiene solución.");
         }
     }//GEN-LAST:event_jButtonResolverActionPerformed
 
@@ -590,8 +586,9 @@ public class Ventana extends JFrame {
         int yD = Integer.parseInt(this.jFormattedTextFieldDestinoY.getText());
         VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
         paneldejuego.reiniciar();
-        if (this.actual < this.resultados.length) {
-            Iterator<Pipe> valores = (juego.transformar(resultados[this.actual])).iterator();
+        try {
+            Map<String, Term> sol = juego.resolver();
+            Iterator<Pipe> valores = (juego.transformar(sol)).iterator();
             paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
             paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
             Pipe aux;
@@ -599,10 +596,9 @@ public class Ventana extends JFrame {
                 aux = valores.next();
                 paneldejuego.agregaPipe(aux);
             }
-            this.actual++;
-        } else {
-            this.actual = 0;
-            JOptionPane.showMessageDialog(this, "Fin de soluciones");
+        }
+        catch (NoSolutionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSigSolActionPerformed
 

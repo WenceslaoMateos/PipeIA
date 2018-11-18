@@ -11,12 +11,13 @@ public class Juego {
 
     private static Juego juego;
     private VistaPipe vista;
+    private Query sol;
 
     private Juego(VistaPipe vista) {
         this.vista = vista;
     }
 
-    public Map<String, Term>[] comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) throws NoSolutionException {
+    public Map<String, Term> comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) throws NoSolutionException {
         String lista = "";
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;
@@ -35,19 +36,16 @@ public class Juego {
         }
         Query.hasSolution("consult('pipe.pl')");
         String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", " + this.orientar(xD, yD) + "), " + lista + ", Sol).";
-        Query sol = new Query(query);
+        this.sol = new Query(query);
         System.out.println(query);
-        Map<String, Term>[] aux2 = null;
-        if (sol.hasSolution()) {
-            aux2 = this.resolver(sol);
-        } else {
-            throw new NoSolutionException("El probelma planteado no tiene solución.");
-        }
-        return aux2;
+        return this.resolver();
     }
 
-    private Map<String, Term>[] resolver(Query q) {
-        return q.allSolutions();
+    public Map<String, Term> resolver() throws NoSolutionException {
+        if (this.sol.hasMoreSolutions())
+            return this.sol.nextSolution();
+        else
+            throw new NoSolutionException("No se han encontrado más soluciones.");
     }
 
     public ArrayList<Pipe> transformar(Map<String, Term> solutions) {
