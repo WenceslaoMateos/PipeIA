@@ -36,11 +36,12 @@ public class Juego {
         Query.hasSolution("consult('pipe.pl')");
         String query = "resolver(extremo(" + xO + ", " + yO + ", " + this.orientar(xO, yO) + "), extremo(" + xD + ", " + yD + ", " + this.orientar(xD, yD) + "), " + lista + ", Sol).";
         Query sol = new Query(query);
+        System.out.println(query);
         Map<String, Term>[] aux2 = null;
         if (sol.hasSolution()) {
             aux2 = this.resolver(sol);
         } else {
-            throw new NoSolutionException("La query sol = " + query + " no tiene solución.");
+            throw new NoSolutionException("El probelma planteado no tiene solución.");
         }
         return aux2;
     }
