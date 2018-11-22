@@ -20,8 +20,6 @@ public class Ventana extends JFrame {
         this.jFormattedTextFieldDestinoY.setText("1");
         this.jFormattedTextFieldOrigenX.setText("0");
         this.jFormattedTextFieldOrigenY.setText("4");
-        this.jFormattedTextFieldMatrizX.setText("6");
-        this.jFormattedTextFieldMatrizY.setText("6");
         this.jButtonSigSol.setEnabled(false);
     }
 
@@ -97,9 +95,6 @@ public class Ventana extends JFrame {
         jLabelCantArribaIzq = new javax.swing.JLabel();
         jButtonMenosArribaIzq = new javax.swing.JButton();
         jPanelParametros = new javax.swing.JPanel();
-        jLabelTextoMatriz = new javax.swing.JLabel();
-        jLabelTextoMatrizX = new javax.swing.JLabel();
-        jLabelTextoMatrizY = new javax.swing.JLabel();
         jLabelTextoOrigen = new javax.swing.JLabel();
         jLabelTextoOrigenX = new javax.swing.JLabel();
         jLabelTextoOrigenY = new javax.swing.JLabel();
@@ -107,8 +102,6 @@ public class Ventana extends JFrame {
         jLabelTextoDestinoX = new javax.swing.JLabel();
         jLabelTextoDestinoY = new javax.swing.JLabel();
         jButtonResolver = new javax.swing.JButton();
-        jFormattedTextFieldMatrizX = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldMatrizY = new javax.swing.JFormattedTextField();
         jFormattedTextFieldOrigenX = new javax.swing.JFormattedTextField();
         jFormattedTextFieldOrigenY = new javax.swing.JFormattedTextField();
         jFormattedTextFieldDestinoY = new javax.swing.JFormattedTextField();
@@ -128,7 +121,7 @@ public class Ventana extends JFrame {
         );
         jPanelJuegoLayout.setVerticalGroup(
             jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jPanelComandos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -324,12 +317,6 @@ public class Ventana extends JFrame {
 
         jPanelParametros.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabelTextoMatriz.setText("Tamaño de Matriz:");
-
-        jLabelTextoMatrizX.setText("X: ");
-
-        jLabelTextoMatrizY.setText("Y:");
-
         jLabelTextoOrigen.setText("Posición del origen:");
 
         jLabelTextoOrigenX.setText("X: ");
@@ -348,18 +335,6 @@ public class Ventana extends JFrame {
                 jButtonResolverActionPerformed(evt);
             }
         });
-
-        try {
-            jFormattedTextFieldMatrizX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            jFormattedTextFieldMatrizY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         try {
             jFormattedTextFieldOrigenX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
@@ -407,15 +382,6 @@ public class Ventana extends JFrame {
                         .addComponent(jLabelTextoOrigenY)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextFieldOrigenY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelTextoMatriz)
-                    .addGroup(jPanelParametrosLayout.createSequentialGroup()
-                        .addComponent(jLabelTextoMatrizX)
-                        .addGap(4, 4, 4)
-                        .addComponent(jFormattedTextFieldMatrizX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTextoMatrizY)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldMatrizY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelTextoOrigen)
                     .addComponent(jLabelTextoDestino)
                     .addGroup(jPanelParametrosLayout.createSequentialGroup()
@@ -439,14 +405,6 @@ public class Ventana extends JFrame {
             jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelParametrosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTextoMatriz)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTextoMatrizX)
-                    .addComponent(jLabelTextoMatrizY)
-                    .addComponent(jFormattedTextFieldMatrizX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldMatrizY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jLabelTextoOrigen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -504,8 +462,6 @@ public class Ventana extends JFrame {
         int yO = Integer.parseInt(this.jFormattedTextFieldOrigenY.getText());
         int xD = Integer.parseInt(this.jFormattedTextFieldDestinoX.getText());
         int yD = Integer.parseInt(this.jFormattedTextFieldDestinoY.getText());
-        int xMax = Integer.parseInt(this.jFormattedTextFieldMatrizX.getText());
-        int yMax = Integer.parseInt(this.jFormattedTextFieldMatrizY.getText());
         HashMap<Integer, Integer> cantidades = new HashMap<Integer, Integer>();
         cantidades.put(1, Integer.parseInt(this.jLabelCantVertical.getText()));
         cantidades.put(2, Integer.parseInt(this.jLabelCantHorizontal.getText()));
@@ -514,7 +470,7 @@ public class Ventana extends JFrame {
         cantidades.put(5, Integer.parseInt(this.jLabelCantArribaDer.getText()));
         cantidades.put(6, Integer.parseInt(this.jLabelCantArribaIzq.getText()));
         try {
-            Map<String, Term> sol = juego.comenzar(xMax, yMax, xO, yO, xD, yD, cantidades);
+            Map<String, Term> sol = juego.comenzar(xO, yO, xD, yD, cantidades);
             VistaPipe paneldejuego = (VistaPipe) this.jPanelJuego;
             paneldejuego.reiniciar();
             Iterator<Pipe> valores = (juego.transformar(sol)).iterator();
@@ -592,7 +548,7 @@ public class Ventana extends JFrame {
             paneldejuego.agregaPipe(xO, yO, this.orientar(xO, yO));
             paneldejuego.agregaPipe(xD, yD, this.orientar(xD, yD));
             Pipe aux;
-            while (valores.hasNext()) {
+            while (valores.hasNext() ) {
                 aux = valores.next();
                 paneldejuego.agregaPipe(aux);
             }
@@ -650,8 +606,6 @@ public class Ventana extends JFrame {
     private javax.swing.JButton jButtonSigSol;
     private javax.swing.JFormattedTextField jFormattedTextFieldDestinoX;
     private javax.swing.JFormattedTextField jFormattedTextFieldDestinoY;
-    private javax.swing.JFormattedTextField jFormattedTextFieldMatrizX;
-    private javax.swing.JFormattedTextField jFormattedTextFieldMatrizY;
     private javax.swing.JFormattedTextField jFormattedTextFieldOrigenX;
     private javax.swing.JFormattedTextField jFormattedTextFieldOrigenY;
     private javax.swing.JLabel jLabelCantAbajoDer;
@@ -663,9 +617,6 @@ public class Ventana extends JFrame {
     private javax.swing.JLabel jLabelTextoDestino;
     private javax.swing.JLabel jLabelTextoDestinoX;
     private javax.swing.JLabel jLabelTextoDestinoY;
-    private javax.swing.JLabel jLabelTextoMatriz;
-    private javax.swing.JLabel jLabelTextoMatrizX;
-    private javax.swing.JLabel jLabelTextoMatrizY;
     private javax.swing.JLabel jLabelTextoOrigen;
     private javax.swing.JLabel jLabelTextoOrigenX;
     private javax.swing.JLabel jLabelTextoOrigenY;

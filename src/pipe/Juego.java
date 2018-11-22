@@ -17,7 +17,7 @@ public class Juego {
         this.vista = vista;
     }
 
-    public Map<String, Term> comenzar(int xMax, int yMax, int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) throws NoSolutionException {
+    public Map<String, Term> comenzar(int xO, int yO, int xD, int yD, HashMap<Integer, Integer> cantidades) throws NoSolutionException {
         String lista = "";
         Iterator<Integer> claves = cantidades.keySet().iterator();
         int i;

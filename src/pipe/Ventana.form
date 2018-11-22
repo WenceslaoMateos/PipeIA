@@ -74,7 +74,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="352" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -359,16 +359,6 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jFormattedTextFieldOrigenY" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabelTextoMatriz" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelTextoMatrizX" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldMatrizX" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelTextoMatrizY" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldMatrizY" min="-2" pref="33" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jLabelTextoOrigen" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelTextoDestino" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -399,15 +389,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelTextoMatriz" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelTextoMatrizX" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelTextoMatrizY" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldMatrizX" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldMatrizY" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelTextoOrigen" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -420,7 +401,7 @@
                   <Component id="jLabelTextoDestino" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabelTextoDestinoX" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelTextoDestinoY" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jFormattedTextFieldDestinoX" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -437,21 +418,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelTextoMatriz">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tama&#xf1;o de Matriz:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelTextoMatrizX">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="X: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelTextoMatrizY">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Y:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelTextoOrigen">
           <Properties>
             <Property name="text" type="java.lang.String" value="Posici&#xf3;n del origen:"/>
@@ -489,20 +455,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonResolverActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldMatrizX">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldMatrizY">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldOrigenX">
           <Properties>
